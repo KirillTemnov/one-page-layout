@@ -1,0 +1,356 @@
+version = 0.1
+
+// one page layout for ios/mobile devices
+
+
+// first param is set to "landscape" or "portrait"
+
+generateGrid(orientation, colSize, rowSize, maxWidth, maxHeigth, halfcolSize=colSize, halfRowSize=rowSize)
+  mx = unit(colSize/8, px)
+  my = unit(rowSize/8, px)
+
+
+  .ws-margins
+    margin      my mx
+
+
+  // 12 blocks
+  for i in 1 2 3 4 5 6 7 8 9 10 11 12
+    .col{i}, .cw{i}
+      width     unit(i * colSize, px)
+    .hcol{i}
+      width     unit(i * halfcolSize, px)
+
+    .col-{i}
+      width     unit(maxWidth - i * colSize, px)
+
+    .hcol-{i}
+      width     unit(maxWidth - i * halfcolSize, px)
+
+    .row{i}
+      height    unit(i * rowSize, px)
+
+    .row-{i}
+      height    unit(maxHeigth - i * rowSize, px)
+
+    .hrow{i}
+      height    unit(i * halfRowSize, px)
+
+    .hrow-{i}
+      height    unit(maxHeigth - i * halfRowSize, px)
+
+
+  if orientation is "landscape"
+    for i in 1 2 3 4 5 6 7 8 9 10 11 12
+      .col{i}-horiz
+        width  unit(i * colSize, px)
+      .hcol{i}-horiz
+        width     unit(i * halfcolSize, px)
+      .col-{i}-horiz
+        width     unit(maxWidth - i * colSize, px)
+      .hcol-{i}-horiz
+        width     unit(maxWidth - i * halfcolSize, px)
+
+
+      .row{i}-horiz
+        height    unit(i * rowSize, px)
+      .row-{i}-horiz
+        height    unit(maxHeigth - i * rowSize, px)
+      .hrow{i}-horiz
+        height    unit(i * halfRowSize, px)
+      .hrow-{i}-horiz
+        height    unit(maxHeigth - i * halfRowSize, px)
+
+
+  if orientation is "portrait"
+    for i in 1 2 3 4 5 6 7 8 9 10 11 12
+      .col{i}-vert
+        width  unit(i * colSize, px)
+      .hcol{i}-vert
+        width     unit(i * halfcolSize, px)
+      .col-{i}-vert
+        width     unit(maxWidth - i * colSize, px)
+      .hcol-{i}-vert
+        width     unit(maxWidth - i * halfcolSize, px)
+
+
+      .row{i}-vert
+        height    unit(i * rowSize, px)
+      .row-{i}-vert
+        height    unit(maxHeigth - i * rowSize, px)
+      .hrow{i}-vert
+        height    unit(i * halfRowSize, px)
+      .hrow-{i}-vert
+        height    unit(maxHeigth - i * halfRowSize, px)
+
+
+//	Resets
+
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, 
+p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, 
+img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, hr, 
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figure, figcaption, hgroup, 
+menu, footer, header, nav, section, summary, time, mark, audio, video 
+  margin        0
+  padding       0
+  border        0
+
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video 
+  display       block
+
+
+a img 
+  border        0
+
+// Selection colors (easy to forget)
+
+::selection 	 	
+  background            rgb(255,255,158)
+::-moz-selection
+  background            rgb(255,255,158)
+img::selection
+  background            transparent
+img::-moz-selection
+  background            transparent
+body 
+  -webkit-tap-highlight-color    rgb(255,255,158)
+
+
+
+// new measures
+// vh   - viewport height
+// vw   - viewport width 
+// vmin - minimum between vw and vh
+//
+.row-100h
+  min-height              100vh
+
+.col-100w
+  min-width               100vw
+
+
+// just a container
+.row-container
+  display                 inline-block
+  text-align              center
+
+body
+  box-sizing              border-box
+  color                   rgba(black, 0.7)
+
+
+.w100
+  width         100%
+
+.h100
+  height        100%
+
+// Fonts
+// http://stackoverflow.com/questions/2545542/font-size-render-in-iphone
+@media screen and (max-device-width: 480px), screen and (-webkit-min-device-pixel-ratio: 2, screen and (device-width: 768px))
+    body 
+      -webkit-text-size-adjust    100%
+
+
+@media only screen
+  // visible only in portrait mode
+  .portrait-only
+    display                    none
+
+  // visible only in landscape mode
+  .landscape-only
+    display                    block
+
+ @media only screen and (orientation: landscape)
+   .portrait-only
+     display                 none
+   .landscape-only
+     display                 block     
+
+ @media only screen and (orientation: portrait)
+   .portrait-only
+     display                 block     
+
+   .landscape-only
+     display                 none
+
+// ipad landscape
+// @media only screen (max-width: 1024) and (orientation: portrait)
+//   .col-100w
+//     min-width                100px
+
+
+// iPhone landscape
+@media only screen (max-width: 480px)
+
+  .col-100w
+    min-width               480px
+
+  .row-100h
+    min-height              100vw
+
+
+
+// iPhone portrait 
+@media only screen (max-width:320px)
+  .col-100w
+    min-width               320px
+    
+
+  .row-100h
+    min-height              100vw
+
+body
+  .center
+    text-align             center
+
+  .float-left
+    float                   left
+
+  .clear
+    clear                   both
+
+  .at-bottom
+    position                fixed
+    bottom                  0
+
+  .nofloat
+    float                   none !important
+
+
+//margin    5px 0 5px 15px
+body
+  for i in 0 1 2 3 4 5 6 7 8 9 10 11 12
+    .col{i}, .col-{i}, hcol{i}, hcol-{i}, .col{i}-vert, .col-{i}-vert, hcol{i}-vert, hcol-{i}-vert, .col{i}-horiz, .col-{i}-horiz, hcol{i}-horiz, hcol-{i}-horiz, 
+      display   inline-block
+      float     left
+
+
+    .row{i}, .row-#{i}
+      margin    5px 0 5px 15px
+
+      &.first
+        margin   5px 0
+
+// normal layout
+
+// desktop/tv 1280 x 768
+@media only screen and (min-width: 1280px) 
+  colSize = 76.8px
+  rowSize = 85.3px
+  maxWidth = 1024px
+  maxHeigth = 768px
+ 
+  generateGrid landscape, colSize, rowSize, maxWidth, maxHeigth
+
+
+
+// ipad landscape (1024 x 768)
+@media only screen and (min-width: 1024px) and (max-width: 1024px) and (orientation: landscape)
+   colSize  = 76.8px
+   rowSize  = 85.3px
+   maxWidth = 1024px
+   maxHeigth = 768px
+   generateGrid landscape, colSize, rowSize, maxWidth, maxHeigth, 40px, 48px
+
+// ipad portrait
+@media only screen and (min-width: 768px) and (max-width: 768px) and (orientation: portrait)
+   colSize  = 76.8px
+   rowSize  = 85.3px
+   maxWidth = 768px
+   maxHeigth = 1024px
+   generateGrid portrait, colSize, rowSize, maxWidth, maxHeigth, 40px, 48px
+
+
+// iphone portrait 320 x 480
+@media only screen and (min-width: 320px) and (max-width: 321px) and (orientation: portrait)
+  colSize = 40px
+  rowSize = 48px
+  maxWidth = 320px
+  maxHeigth = 480px
+  generateGrid portrait, colSize, rowSize, maxWidth, maxHeigth
+
+
+// iphone landscape 480 x 320
+@media only screen and (min-width: 480px) and (max-width: 481px) and (orientation : landscape)
+  colSize = 40px
+  rowSize = 48px
+  maxWidth = 480px
+  maxHeigth = 320px
+
+  generateGrid landscape, colSize, rowSize, maxWidth, maxHeigth
+
+
+
+// show only on special case of displays
+.phone-only
+  display               none
+
+.tablet-only
+  display               none
+
+.tv-only
+  display               none
+
+.hires-tv-only
+  display               none
+
+
+
+@media only screen and (max-width: 480px)
+  .phone-only
+    display             block 
+
+@media only screen and (min-width: 640px) and (max-width: 1024px)
+  .tablet-only
+    display             block 
+
+@media only screen and (min-width: 1025px) and (max-width: 1280px)
+  .tv-only
+    display             block 
+
+@media only screen and (min-width: 1281px)
+  .hires-tv-only
+    display             block 
+
+
+
+
+// font sizes
+
+.huge-font
+  font-size             300%
+
+h1, .gigant-font
+  font-size             250%
+
+h2, .bigger-font
+  font-size             200%
+
+h3, .big-font
+  font-size             150%
+
+h4, .medium-font
+  font-size             125%
+
+h5, .normal-font
+  font-size             100%
+
+h6, .small-font
+  font-size             80%
+
+.tiny-font
+  font-size             60%
+
+sup, sub
+  font-size             50%
+
+
+
+
+
