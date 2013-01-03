@@ -1,6 +1,19 @@
-version = 0.1
+version = 0.2
 
 // one page layout for ios/mobile devices
+
+
+// "buttons"
+
+.btn-height
+  height                48px
+  line-height           48px
+  display               inline-block
+  font-size             20px
+
+.btn-width
+  width                 48px
+  display               inline-block
 
 
 // first param is set to "landscape" or "portrait"
@@ -15,7 +28,6 @@ generateGrid(orientation, maxWidth, maxHeigth, postfix=tv)
   mx = unit(colSize/8, px)
   my = unit(rowSize/8, px)
 
-
   .ws-margins
     margin      my mx
 
@@ -23,7 +35,7 @@ generateGrid(orientation, maxWidth, maxHeigth, postfix=tv)
     padding     my mx
 
   // 12 blocks
-  for i in 1 2 3 4 5 6 7 8 9 10 11 12
+  for i in 0 1 2 3 4 5 6 7 8 9 10 11 12
     .lh{i}, .lh{i}-{postfix}
       line-height       unit(i * colSize, px)
 
@@ -48,7 +60,7 @@ generateGrid(orientation, maxWidth, maxHeigth, postfix=tv)
     .row{i}, .row{i}-{postfix}
       height    unit(i * rowSize, px)
 
-    .row-{i}, .row{i}-{postfix}
+    .row-{i}, .row-{i}-{postfix}
       height    unit(maxHeigth - i * rowSize, px)
 
     .hrow{i}, .hrow{i}-{postfix}
@@ -63,7 +75,7 @@ generateGrid(orientation, maxWidth, maxHeigth, postfix=tv)
       display           inline-block
 
 
-    for i in 1 2 3 4 5 6 7 8 9 10 11 12
+    for i in 0 1 2 3 4 5 6 7 8 9 10 11 12
       .col{i}-horiz, .col{i}-horiz-{postfix}
         width  unit(i * colSize, px)
       .hcol{i}-horiz, .hcol{i}-horiz-{postfix}
@@ -88,7 +100,7 @@ generateGrid(orientation, maxWidth, maxHeigth, postfix=tv)
     .inline-vert, .inline-vert-{postfix}
       display           inline-block
 
-    for i in 1 2 3 4 5 6 7 8 9 10 11 12
+    for i in 0 1 2 3 4 5 6 7 8 9 10 11 12
       .col{i}-vert, .col{i}-vert-{postfix}
         width  unit(i * colSize, px)
       .hcol{i}-vert, .hcol{i}-vert-{postfix}
@@ -177,6 +189,7 @@ body
 .h100
   height        100%
 
+
 .notification-width
   width         600px
 
@@ -235,6 +248,7 @@ body
 
     .notification-width
       width                    480px
+
 
 // iPhone landscape
 @media only screen and (max-width: 480px) and (orientation: landscape)
@@ -353,12 +367,12 @@ body
 
 // iphone portrait 320 x 480
 @media only screen and (min-width: 320px) and (max-width: 321px) and (orientation: portrait)
-  generateGrid portrait, 320px, 480px, smartphone
+  generateGrid portrait, 320px, 480px, phone
 
 
 // iphone landscape 480 x 320
 @media only screen and (min-width: 480px) and (max-width: 481px) and (orientation : landscape)
-  generateGrid landscape, 480px, 320px, smartphone
+  generateGrid landscape, 480px, 320px, phone
 
 
 
@@ -425,36 +439,14 @@ h6, .small-font
 sup, sub
   font-size             50%
 
+@media only screen and (max-width: 1024px)
+  body
+    font-size                100%
 
 
 // small devices
 @media only screen and (max-width: 480px)
   body
-    font-size                50%
-//   .huge-font
-//     font-size             150%
+    font-size                75%
 
-//   h1, .gigant-font
-//     font-size             125%
-
-//   h2, .bigger-font
-//     font-size             100%
-
-//   h3, .big-font
-//     font-size             75%
-
-//   h4, .medium-font
-//     font-size             62.5%
-
-//   h5, .normal-font
-//     font-size             50%
-
-//   h6, .small-font
-//     font-size             40%
-
-//   .tiny-font
-//     font-size             30%
-
-//   sup, sub
-//     font-size             25%
 
